@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductModule } from './product/product.module';
+import { CampanaClienteModule } from './campana-cliente/campana-cliente.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 
@@ -15,7 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
           useFindAndModify: false,
           useCreateIndex: true
         }),
-  ProductModule,
+        CampanaClienteModule,
   ],
   controllers: [
     AppController
