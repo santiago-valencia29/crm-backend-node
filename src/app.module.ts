@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CampanaClienteModule } from './campana-cliente/campana-cliente.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ClienteCrmModule } from './cliente-crm/cliente-crm.module';
 
 
 @Module({
@@ -16,6 +17,7 @@ import { MongooseModule } from '@nestjs/mongoose';
           useCreateIndex: true
         }),
         CampanaClienteModule,
+        ClienteCrmModule
   ],
   controllers: [
     AppController

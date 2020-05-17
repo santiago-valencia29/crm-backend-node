@@ -2,15 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf'
-import * as cookieParser from 'cookie-parser'
 import { AnyExceptionFilter } from './exception-filters/any-exception.filter';
 
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  // app.useGlobalFilters(new AnyExceptionFilter());
+  app.useGlobalFilters(new AnyExceptionFilter());
   const corsOptions = {
     origin: [
       'http://localhost:4200',
@@ -27,8 +25,6 @@ async function bootstrap() {
   app.use(helmet());
   app.enableCors(); //acceder desde una app angular
   
-  // app.use(csurf());
-  // app.use(cookieParser());
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
