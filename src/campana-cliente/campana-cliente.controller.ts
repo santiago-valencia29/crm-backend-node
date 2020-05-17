@@ -11,7 +11,6 @@ export class CampanaClienteController {
 
     @Post('/create')
     async createPost(@Res() res,@Body() createCampanaClientetDTO:CreateCampanaClienteDTO){
-    //    console.log(createCampanaClienteDTO);
        const campanaCliente = await this.campanaClienteService.createCampanaCliente(createCampanaClientetDTO);
         return res.status(HttpStatus.OK).json({
             message: 'Campanacliente Successfully Created',
@@ -20,9 +19,9 @@ export class CampanaClienteController {
     }
 
 
-    @Get('/:campanaClienteID') // utilizando un parametro
-    async getCampanaCliente(@Res() res ,@Param('campanaClienteID') campanaClienteID){
-        const campanaCliente = await this.campanaClienteService.getCampanaCliente(campanaClienteID);
+    @Get('/') 
+    async getUltimoCampanaCliente(@Res() res){
+        const campanaCliente = await this.campanaClienteService.getUltimoCampanaCliente();
         if(!campanaCliente) throw new NotFoundException('CampanaCliente Not Found')
         return res.status(HttpStatus.OK).json(campanaCliente);
 

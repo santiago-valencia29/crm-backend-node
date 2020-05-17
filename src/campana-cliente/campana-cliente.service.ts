@@ -11,8 +11,8 @@ export class CampanaClienteService {
     constructor(@InjectModel('CampanaCliente') readonly campanaClienteModel: Model<CampanaCliente>){}
 
   
-    async getCampanaCliente(campanaClienteID: string): Promise<CampanaCliente>{
-        const campanaCliente = await this.campanaClienteModel.findById(campanaClienteID);
+    async getUltimoCampanaCliente(): Promise<any>{
+        const campanaCliente = await this.campanaClienteModel.find().sort({$natural:-1}).limit(1);
         return campanaCliente;
     }
     async createCampanaCliente(CreateCampanaClienteDTO: CreateCampanaClienteDTO): Promise<CampanaCliente>{
