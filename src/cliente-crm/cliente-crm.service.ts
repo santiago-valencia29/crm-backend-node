@@ -11,13 +11,8 @@ export class ClienteCrmService {
 
     constructor(@InjectModel('ClienteCrm') readonly clienteModel: Model<ClienteCrm>){}
 
-    async createCliente(CreateClienteCrmDTO: CreateClienteCrmDTO): Promise<ClienteCrm>{
-        const cliente = new this.clienteModel(CreateClienteCrmDTO);
-        await cliente.save();
+    async createCliente(CreateClienteCrmDTO: CreateClienteCrmDTO[]): Promise<ClienteCrm[]>{
+        const cliente = this.clienteModel.insertMany(CreateClienteCrmDTO);
         return cliente;
      }
-
-
-
-
 }
